@@ -26,14 +26,14 @@ namespace elastic_kibana
 
             //var elasticUri = Configuration["ElasticConfiguration:Uri"];
 
-            Log.Logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .WriteTo.LogzIo("QcsBKjPtMWUEWriInZrAdotsmxISodZm", "MY_JSON_LOG_TYPE", useHttps: true)
-                //.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
-                //{
-                //    AutoRegisterTemplate = true,
-                //})
-            .CreateLogger();
+            //Log.Logger = new LoggerConfiguration()
+            //    .Enrich.FromLogContext()
+            //    .WriteTo.LogzIo("QcsBKjPtMWUEWriInZrAdotsmxISodZm", "MY_JSON_LOG_TYPE", useHttps: true)
+            //    //.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
+            //    //{
+            //    //    AutoRegisterTemplate = true,
+            //    //})
+            //.CreateLogger();
         }
 
         public IConfiguration Configuration { get; }

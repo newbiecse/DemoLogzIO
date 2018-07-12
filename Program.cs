@@ -20,40 +20,39 @@ namespace elastic_kibana
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((context, builder) =>
-                {
-                    var env = context.HostingEnvironment;
+           WebHost.CreateDefaultBuilder(args)
+               .ConfigureAppConfiguration((context, builder) =>
+               {
+                   var env = context.HostingEnvironment;
 
-                    string envFile = $"appsettings.{env.EnvironmentName}.json";
+                   string envFile = $"appsettings.{env.EnvironmentName}.json";
 
-                    Console.WriteLine($"envFile: {envFile}");
+                   Console.WriteLine($"envFile: {envFile}");
 
-                    builder
-                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                   builder
+                   .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                   .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
-                    if (env.IsDevelopment())
-                    {
-                        var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
-                        if (appAssembly != null)
-                        {
-                            builder.AddUserSecrets(appAssembly, optional: true);
-                        }
-                    }
+                   if (env.IsDevelopment())
+                   {
+                       var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
+                       if (appAssembly != null)
+                       {
+                           builder.AddUserSecrets(appAssembly, optional: true);
+                       }
+                   }
 
-                    builder.AddEnvironmentVariables();
+                   builder.AddEnvironmentVariables();
 
-                    if (args != null)
-                    {
-                        builder.AddCommandLine(args);
-                    }
-                })
-                .UseStartup<Startup>()
-                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-                .ReadFrom.Configuration(hostingContext.Configuration)
-                .Enrich.FromLogContext())
-                .Build();
-
+                   if (args != null)
+                   {
+                       builder.AddCommandLine(args);
+                   }
+               })
+               .UseStartup<Startup>()
+               .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+               .ReadFrom.Configuration(hostingContext.Configuration)
+               .Enrich.FromLogContext())
+               .Build();
     }
 }
