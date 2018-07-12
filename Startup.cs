@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using elastic_kibana.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -57,6 +58,8 @@ namespace elastic_kibana
             }
 
             loggerFactory.AddSerilog();
+
+            app.UseRequestResponseLogging();
 
             app.UseStaticFiles();
 
