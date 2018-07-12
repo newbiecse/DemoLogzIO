@@ -19,9 +19,9 @@ namespace elastic_kibana.Controllers
 
         public IActionResult Index()
         {
-            _logger.LogInformation($"oh hai there! : {DateTime.UtcNow}");
-
-            return View();
+            _logger.LogInformation("Test 1");
+            var result = new int[] { 1, 2, 3, 4 };
+            return Ok(result);
         }
 
         public IActionResult About()

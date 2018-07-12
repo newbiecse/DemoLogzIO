@@ -52,7 +52,9 @@ namespace elastic_kibana
                .UseStartup<Startup>()
                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                .ReadFrom.Configuration(hostingContext.Configuration)
-               .Enrich.FromLogContext())
+               .Enrich.FromLogContext()
+               .WriteTo.LogzIo("QcsBKjPtMWUEWriInZrAdotsmxISodZm", "MY_JSON_LOG_TYPE", useHttps: true)
+               )
                .Build();
     }
 }
