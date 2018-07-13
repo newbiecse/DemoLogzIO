@@ -25,19 +25,9 @@ namespace elastic_kibana
 
             Configuration = builder.Build();
 
-            //var elasticUri = Configuration["ElasticConfiguration:Uri"];
-
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(Configuration)
-                .Enrich.FromLogContext()
-                .WriteTo.RollingFile("Logs/{Date}.log",
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}")
-                .WriteTo.LogzIo("QcsBKjPtMWUEWriInZrAdotsmxISodZm", "MY_JSON_LOG_TYPE", useHttps: true)
-            //.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
-            //{
-            //    AutoRegisterTemplate = true,
-            //})
-            .CreateLogger();
+                .CreateLogger();
         }
 
         public IConfiguration Configuration { get; }
